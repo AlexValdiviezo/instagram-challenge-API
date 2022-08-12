@@ -17,7 +17,30 @@ const publicPost = async (request, response) => {
     response.send('ok');
 }
 
+const publicPut = async (request, response) => {
+    const {id, like} = request.body;
+    const find = await PublicItem.findById(id);
+    const {imagen, titulo, likes} = find;
+    res = {
+        imagen: imagen,
+        titulo: titulo,
+        likes: likes+like
+    }
+    await PublicItem.findByIdAndUpdate(
+        id,
+        res
+    )
+    response.send('ok');
+}
+
+const publicDelete = async (request, response) => {
+    await PublicItem.findByIdAndDelete(request.body.id);
+    response.send('ok');
+}
+
 module.exports = {
     publicGet,
-    publicPost
+    publicPost,
+    publicPut,
+    publicDelete
 }
