@@ -1,18 +1,23 @@
 const { Router } = require('express');
 const router = Router();
-
 const { publicGet, 
         publicPost,
         publicPut,
         publicDelete
     } = require('../controllers/public-items');
+const { isPostValid } = require('../middlewares/isPostValid-middleware');
+const { isPutValid } = require('../middlewares/isPutValid-middleware');
 
-router.get('/', publicGet);
+const { isUrlImg } = require('../middlewares/isUrlImg-middleware');
+const { isValidID } = require('../middlewares/isValidID-middleware');
+const { isValidText } = require('../middlewares/isValidText-middleware');
 
-router.post('/', publicPost);
+router.get('/',publicGet);
 
-router.put('/', publicPut);
+router.post('/', [isPostValid ,isUrlImg, isValidText], publicPost);
 
-router.delete('/', publicDelete);
+router.put('/', [isPutValid, isValidID], publicPut);
+
+router.delete('/', [isValidID], publicDelete);
 
 module.exports = router;

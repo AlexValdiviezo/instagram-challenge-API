@@ -13,7 +13,7 @@ class Server{
 
         this.conectarDB();
 
-        //Middlewares => funciones que siempre van a ejecutarse cuando nosotros levantemos nuestro servidor. (app.use)
+        //Middlewares
 
         this.middlewares();
 

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const PublicItem = require('../models/public-items');
+
 
 const dbConnection = async() => {
     /*
@@ -13,6 +15,21 @@ const dbConnection = async() => {
         });
 
         console.log('Base de datos Online');
+
+        const publics = await PublicItem.find({});
+        
+        if(publics.length<3){
+            for(let i=0; i<3; i++){
+                if(!publics[i]){
+                    const public = new PublicItem({
+                        imagen:"http://i.imgur.com/9L45pJG.jpg",
+                        titulo:"default",
+                        likes:0
+                    })
+                    public.save();
+                }
+            }
+        }
 
     } catch (error) {
 
