@@ -7,7 +7,7 @@ const isPutValid = (request, response, next) =>{
         if(!id) throw Error('Parametros invalidos');
         if(isNaN(like)) throw Error('Los likes deben ser numericos')
     } catch (error) {
-        console.log(1)
+
         return response.status(400).json({
             error
         })

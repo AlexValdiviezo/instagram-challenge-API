@@ -50,7 +50,7 @@ const publicPut = async (request, response) => {
         let res = {};
         if(imagen) res.imagen = imagen;
         if(titulo) res.titulo = titulo;
-        res.likes = find.likes + like;
+        if(like) res.likes = find.likes + like;
 
         await PublicItem.findByIdAndUpdate(
             id,
@@ -61,6 +61,7 @@ const publicPut = async (request, response) => {
             data: res
         });
     }catch(error){
+        console.log(error)
         response.status(502).json({
             error
         })

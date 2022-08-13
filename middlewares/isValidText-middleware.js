@@ -9,6 +9,7 @@ const isValidText = (request, response, next) => {
             }
         }
     }catch(error){
+
         return response.status(400).json({
             error
         })
