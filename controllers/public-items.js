@@ -47,21 +47,14 @@ const publicPut = async (request, response) => {
     try{
         const {id, imagen, titulo='', like} = request.body;
         const find = await PublicItem.findById(id);
-        let res = {};
-        if(imagen) res.imagen = imagen;
-        if(titulo) res.titulo = titulo;
-        if(like) res.likes = find.likes + like;
 
-        await PublicItem.findByIdAndUpdate(
-            id,
-            res
-        )
+        const result = await PublicItem.findOneAndUpdate({uid: id}, {imagen, titulo, likes:like})
+
         return response.status(202).json({
             msg: 'accepted',
-            data: res
+            data: result
         });
     }catch(error){
-        console.log(error)
         response.status(502).json({
             error
         })
