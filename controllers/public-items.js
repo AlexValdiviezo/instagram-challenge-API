@@ -1,5 +1,6 @@
 const { request } = require('express');
 const { response } = require('express');
+const { find, findById } = require('../models/public-items');
 const PublicItem = require('../models/public-items');
 
 const publicGet = async (request, response) => {
@@ -45,16 +46,19 @@ const publicPost = async (request, response) => {
 
 const publicPut = async (request, response) => {
     try{
-        const {id, imagen, titulo='', like} = request.body;
-        const find = await PublicItem.findById(id);
-        const result = await PublicItem.findOneAndUpdate({uid: id}, {imagen, titulo, likes:like})
-
-        return response.status(202).json({
-            msg: 'accepted',
-            data: result,
-            titlo: titulo
-        });
+        const {id, imagen, titulo, likes} = request.body;
+        const req = {};
+        const data = await PublicItem.findById(id);
+        const {likes:like} = data;
+        if(imagen) req.imagen = imagen;
+        if(titulo) req.titulo = titulo;
+        if(likes) req.likes = likes + like;
+        const result = await PublicItem.findByIdAndUpdate(id, req);
+        response.status(202).json({
+            data: result
+        })
     }catch(error){
+        console.log(error);
         response.status(502).json({
             error
         })
