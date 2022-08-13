@@ -23,7 +23,7 @@ const publicGet = async (request, response) => {
 
 const publicPost = async (request, response) => {
     setTimeout(async() => {
-        const {imagen, titulo, likes} = request.body;
+        const {imagen, titulo='', likes} = request.body;
         try{
         const public = new PublicItem({
             imagen, titulo, likes
@@ -45,7 +45,7 @@ const publicPost = async (request, response) => {
 
 const publicPut = async (request, response) => {
     try{
-        const {id, imagen, titulo, like} = request.body;
+        const {id, imagen, titulo='', like} = request.body;
         const find = await PublicItem.findById(id);
         let res = {};
         if(imagen) res.imagen = imagen;

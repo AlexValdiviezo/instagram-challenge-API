@@ -7,7 +7,7 @@ const publicItems = Schema({
     },
     titulo: {
         type: String,
-        required: [true, 'El titulo es obligatorio'], //Requerido
+        required: [false, 'El titulo es obligatorio'], //Requerido
     },
     likes: {
         type: Number,

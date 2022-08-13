@@ -3,7 +3,7 @@ const { request, response, next } = require('express');
 const isPostValid = (request, response, next) =>{
     const {imagen, titulo} = request.body;
     try {
-        if(!imagen || !titulo) throw Error('Parametros invalidos')
+        if(!imagen) throw Error('Parametros invalidos')
     } catch (error) {
         return response.status(400).json({
             error
