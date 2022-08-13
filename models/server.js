@@ -8,6 +8,7 @@ class Server{
         this.app = express();
         this.port = process.env.PORT;
         this.apiRoutePath = '/api'
+        this.uploadRoutePath = '/upload'
 
         // Conectar a base de datos
 
@@ -39,6 +40,7 @@ class Server{
     routes(){
         //Rutas
         this.app.use(this.apiRoutePath, require('../routes/public-items.js'));
+        this.app.use(this.uploadRoutePath, require('../routes/upload.js'))
     }
 
     listen(){
