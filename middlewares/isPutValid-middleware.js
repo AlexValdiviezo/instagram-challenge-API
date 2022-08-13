@@ -5,9 +5,8 @@ const isPutValid = (request, response, next) =>{
     const {id, like} = request.body;
     try {
         if(!id) throw Error('Parametros invalidos');
-        if(isNaN(like)) throw Error('Los likes deben ser numericos')
+        if(like && isNaN(like) && like != 0) throw Error('Los likes deben ser numericos')
     } catch (error) {
-
         return response.status(400).json({
             error
         })
