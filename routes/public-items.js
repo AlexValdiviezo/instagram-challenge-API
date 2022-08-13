@@ -16,7 +16,7 @@ router.get('/',publicGet);
 
 router.post('/', [isPostValid ,isUrlImg, isValidText], publicPost);
 
-router.put('/', [isPutValid, isValidID], publicPut);
+router.put('/', [isPutValid, isUrlImg, isValidText, isValidID], publicPut);
 
 router.delete('/', [isValidID], publicDelete);
 

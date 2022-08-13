@@ -45,14 +45,13 @@ const publicPost = async (request, response) => {
 
 const publicPut = async (request, response) => {
     try{
-        const {id, like} = request.body;
+        const {id, imagen, titulo, like} = request.body;
         const find = await PublicItem.findById(id);
-        const {imagen, titulo, likes} = find;
-        res = {
-            imagen: imagen,
-            titulo: titulo,
-            likes: likes+like
-        }
+        let res = {};
+        if(imagen) res.imagen = imagen;
+        if(titulo) res.titulo = titulo;
+        res.likes = find.likes + like;
+
         await PublicItem.findByIdAndUpdate(
             id,
             res
