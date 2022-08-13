@@ -24,6 +24,8 @@ Esta API en general es un crud completo de la aplicacion Instagram Challenge tam
 
 - `DELETE /api` Elimina completamente una publicación en la base de datos.
 
+- `PUT /upload` Sube una imagen y devuelve el link de la misma para así mismo hacer un request `PUT /api` para subir la imagen a la base de datos.
+
 - Para mas información del CRUD dejo la [Documentación de POSTMAN](https://documenter.getpostman.com/view/10430257/VUjSFPQj)
 
 ## Middlewares:
@@ -35,3 +37,8 @@ Esta API en general es un crud completo de la aplicacion Instagram Challenge tam
 
 ## Base de datos
 Como uso general de base de datos utilizo `MongoDB` y para la creación y coneccion con las colecciones utilizo `mongoose`.
+Para el uso de imagenes en la nube utilicé la API de cloudinary debido a que en su actual host no tiene acceso a los archivos por un motivo de seguridad de heroku. Es así por lo que las imagenes deben subirse a otro repositorio. Igualmente si el servidor se inicia localmente, las imagenes empezaran a almacenarse en el servidor local.
+
+# host
+- Actualmente la API esta hosteada en [Heroku App](https://instagram-challenge-backend.herokuapp.com/api)
+- Un ejemplo de frontend para la ejecución de la API es mi propia aplicacion [instagram-challenge](https://github.com/AlexValdiviezo/instagram-challenge), hosteada tambien en [Heroku App](https://instagram-challenge-sondeos.herokuapp.com)
